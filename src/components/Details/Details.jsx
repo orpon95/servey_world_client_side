@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import useAxiospublic from '../Hooks/useAxiospublic';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const Details = () => {
+    const axiosSecure = useAxiosSecure()
     // const [surveysData,setsurveysData] = useState([])
     const [yesNo, setYesNo] = useState("")
     const [like, setlike] = useState("")
@@ -27,11 +29,6 @@ const Details = () => {
 
 
 
-
-
-
-
-
     const singleseurveyData = data?.find(data => data?._id === id)
     // console.log("singleseurveyData", singleseurveyData);
     const { title, category, short_description, _id } = singleseurveyData
@@ -49,26 +46,55 @@ const Details = () => {
 
     // }
 
-    const handleYesNo = (e)=>{
+    const handleYesNo = (e) => {
         // console.log(e.target.value);
         setYesNo(e.target.value)
 
 
     }
-    const handlelikeDislike = (e)=>{
+    const handlelikeDislike = (e) => {
         // console.log(e.target.value);
         setlike(e.target.value)
-        
+
 
 
     }
-    console.log(yesNo,like);
-    const handletextArea = (e)=>{
+    console.log(yesNo, like);
+    const handletextArea = (e) => {
         setAreaValue(e.target.value)
-        
+
     }
-    const buttonClick =()=>{
+    const buttonClick = () => {
         console.log(areaValue);
+        const usersSurveyInfo = {
+            like,
+            yesNo,
+            areaValue,
+            usersid:_id
+        }
+        axiosSecure.post("/v1/usersSurveyInfo", usersSurveyInfo)
+            .then(res => {
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: 'success!',
+                        text: 'tour opinion accepted successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+                else {
+                    Swal.fire({
+                        title: 'error!',
+                        text: 'something wrong ,pls try again',
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    })
+
+
+                }
+
+            })
+
     }
 
     return (
@@ -110,7 +136,7 @@ const Details = () => {
                             </div>
                             {/*like dislike */}
                             <div className='text-center'>
-                                <label  className=" cursor-pointer">
+                                <label className=" cursor-pointer">
                                     <span className="label-text text-xl font-bold mx-3" >add comments</span>
                                     <textarea onChange={handletextArea} className="textarea textarea-primary" placeholder="Bio"></textarea>
                                 </label>
