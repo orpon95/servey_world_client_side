@@ -15,6 +15,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Details from './components/Details/Details.jsx';
 import useAxiosSecure from './components/Hooks/useAxiosSecure.jsx';
 import Login from './components/Login/Login.jsx';
+import Register from './components/Register/Register.jsx';
 const queryClient = new QueryClient()
 const axiosSecure = useAxiosSecure()
 const router = createBrowserRouter([
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>
+        
+      },
+      {
+        path: "register",
+        element: <Register></Register>
         
       },
     ]

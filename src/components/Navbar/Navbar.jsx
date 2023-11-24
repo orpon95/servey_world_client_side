@@ -21,6 +21,7 @@ const Navbar = () => {
                                 <li> <NavLink to={"/"} >Home</NavLink> </li>
                                 <li> <NavLink to={"/surveys"} >All surveys</NavLink> </li>
                                 <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li>
+                                <li> <NavLink to={"/register"} >register</NavLink> </li>
                                 <li> <NavLink to={"/login"} >login</NavLink> </li>
                             </ul>
                         </div>
@@ -35,6 +36,7 @@ const Navbar = () => {
                         <li> <NavLink to={"/"} >Home</NavLink> </li>
                         <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li>
                         <li> <NavLink to={"/login"} >login</NavLink> </li>
+                        <li> <NavLink to={"/register"} >register</NavLink> </li>
                     </ul>
                 </div>
             </div>
