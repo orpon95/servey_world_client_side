@@ -1,10 +1,12 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
 const CreateSurvey = () => {
-    const axiosSecure =useAxiosSecure()
+    // const [timestamp,settimestamp] = useState("")
+
+    const axiosSecure = useAxiosSecure()
     const handleAdd = (e) => {
         e.preventDefault();
         const form = e.target
@@ -12,39 +14,45 @@ const CreateSurvey = () => {
         const short_description = form?.short_description?.value;
         const category = form?.category?.value;
         const options = 0;
-        const like_dislike = 0 ;
-
+        const like_dislike = 0;
+        const timestamp = new Date()
+        
+       
 
 
 
         // console.log(image,name,brandName,type,price,short_description,rating_2);
         const createdSurvey = {
-            title, category, short_description,options,like_dislike
+            title, category, short_description, options, like_dislike, timestamp
 
         }
         console.log(createdSurvey);
-        axiosSecure.post("/v1/surveys",createdSurvey)
-        .then(res => {
-            if (res.data.insertedId) {
-                Swal.fire({
-                    title: 'success!',
-                    text: 'surveys added successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                })
-            }
-            else {
-                Swal.fire({
-                    title: 'error!',
-                    text: 'something wrong ,pls try again',
-                    icon: 'error',
-                    confirmButtonText: 'Cool'
-                })
+        axiosSecure.post("/v1/surveys", createdSurvey)
+            .then(res => {
+                console.log("response", res.data);
+                // console.log("insertedid",res.data.result.insertedId);
+                // console.log("timestamp",res.data.timestamp);
+
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: 'success!',
+                        text: 'surveys added successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+                else {
+                    Swal.fire({
+                        title: 'error!',
+                        text: 'something wrong ,pls try again',
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    })
 
 
-            }
+                }
 
-        })
+            })
 
     }
     return (
@@ -66,9 +74,9 @@ const CreateSurvey = () => {
                 <div className='text-center'>
                     <label name='options' className=" cursor-pointer">
                         <span className="label-text text-xl font-bold mx-3" >yes</span>
-                        <input name='options' type="radio" value={"yes"}  className="checkbox checkbox-primary" />
+                        <input name='options' type="radio" value={"yes"} className="checkbox checkbox-primary" />
                         <span className="label-text text-xl font-bold mx-3">no</span>
-                        <input name='options' type="radio" value={"no"}   className="checkbox checkbox-primary" />
+                        <input name='options' type="radio" value={"no"} className="checkbox checkbox-primary" />
                     </label>
 
                 </div>
@@ -76,9 +84,9 @@ const CreateSurvey = () => {
                 <div className='text-center'>
                     <label name='options' className=" cursor-pointer">
                         <span className="label-text text-xl font-bold mx-3" >like</span>
-                        <input name='like_dislike' type="radio" value={"like"}  className="checkbox checkbox-primary" />
+                        <input name='like_dislike' type="radio" value={"like"} className="checkbox checkbox-primary" />
                         <span className="label-text text-xl font-bold mx-3">dislike</span>
-                        <input name='like_dislike' type="radio" value={"dislike"}   className="checkbox checkbox-primary" />
+                        <input name='like_dislike' type="radio" value={"dislike"} className="checkbox checkbox-primary" />
                     </label>
 
                 </div>

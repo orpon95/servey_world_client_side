@@ -16,6 +16,7 @@ import Details from './components/Details/Details.jsx';
 import useAxiosSecure from './components/Hooks/useAxiosSecure.jsx';
 import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
+import Authprovider from './Authprovider/Authprovider.jsx';
 const queryClient = new QueryClient()
 const axiosSecure = useAxiosSecure()
 const router = createBrowserRouter([
@@ -57,7 +58,8 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Authprovider><RouterProvider router={router} /></Authprovider>
+      
 
     </QueryClientProvider>
 

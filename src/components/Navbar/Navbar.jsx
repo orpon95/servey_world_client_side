@@ -1,7 +1,76 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { authContext } from '../../Authprovider/Authprovider';
+import useAxiospublic from '../Hooks/useAxiospublic';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+    const axiosPublic = useAxiospublic()
+    const nevigate = useNavigate()
+    const location = useLocation()
+    const [loggedinUser, setLoggedInUser] = useState('')
+    const { user, logOut, googlesign } = useContext(authContext)
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+                setLoggedInUser('')
+                const loggeduser = { email: user?.email }
+
+                // clear coki start
+
+
+
+            })
+            .catch(err => console.log(err))
+
+
+
+
+    }
+
+
+    // googlesign
+    const handleGoole = () => {
+        googlesign()
+            .then(result => {
+                setLoggedInUser(result.user)
+                const loggeduser = result.user
+
+                const UserInfo = {
+                    name: result.user?.displayName,
+                    email: result.user?.email
+                }
+
+                // user info save to dbs
+                axiosPublic.post("/v1/users", UserInfo)
+                    .then(res => {
+                        console.log("inside update pro", res.data);
+                        if (res.data.insertedId) {
+                            console.log("after posting data userinfo", res.data);
+
+                        }
+                    })
+                nevigate(location?.state ? location.state : "/")
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'sucessfully loggedin',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                // start
+
+                // end
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+
+
+
+    }
     return (
         <div>
             <div className="drawer">
@@ -22,7 +91,26 @@ const Navbar = () => {
                                 <li> <NavLink to={"/surveys"} >All surveys</NavLink> </li>
                                 <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li>
                                 <li> <NavLink to={"/register"} >register</NavLink> </li>
-                                <li> <NavLink to={"/login"} >login</NavLink> </li>
+                                {
+                                    user ? <button onClick={handleSignOut} className='btn btn-ghost mt-2 underline'> sign out</button> :
+
+                                        // <NavLink to={"/Login"}> <button className='btn'> Log in</button></NavLink>
+                                        <NavLink to={"/Login"}><button className='btn btn-ghost underline'> Log in</button></NavLink>
+
+
+                                }
+                                <button className='btn btn-ghost underline' onClick={handleGoole}>Sign in with google</button>
+                                {
+                                    user && <div className='flex items-center text-center gap-3'>
+                                        <h1 className='underline p-2 rounded-lg font-bold'>
+                                            {user?.displayName}
+                                        </h1>
+                                        <p className='self-center'><img className='w-3/6 h-[40px] rounded-full ' src={user?.photoURL} alt="" /></p>
+
+
+                                    </div>
+                                }
+
                             </ul>
                         </div>
                     </div>

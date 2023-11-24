@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { authContext } from '../../Authprovider/Authprovider';
+import { updateProfile } from 'firebase/auth';
+import useAxiospublic from '../Hooks/useAxiospublic';
 
 const Register = () => {
+    const { createUser } = useContext(authContext)
+    const [UserInfo, setUserInfo] = useState("")
+    const axiosPublic = useAxiospublic()
     const {
         register,
         handleSubmit,
@@ -10,8 +17,47 @@ const Register = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => console.log(data)
-    console.log(watch("example"))
+    const onSubmit = (data) => {
+        createUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user)
+                // setUserInfo(result.user)
+                updateProfile(result.user,{
+                    displayName:data.name,
+                    photoURL:data.picURL
+                })
+                    // setUserInfo(result.user)
+                    .then(() => {
+                        const UserInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+
+                        // user info save to dbs
+                        axiosPublic.post("/v1/users", UserInfo)
+                            .then(res => {
+                                console.log("inside update pro",res.data);
+                                if (res.data.insertedId) {
+                                    console.log("after posting data userinfo", res.data);
+                                    Swal.fire({
+                                        position: 'top-center',
+                                        icon: 'success',
+                                        title: 'sucessfully registered',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            })
+                    })
+                    .catch()
+
+
+
+            })
+            .catch(err => console.log(err))
+
+    }
+    // console.log(watch("example"))
     return (
         <div>
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl ">
@@ -45,12 +91,12 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input required name='password' {...register("password", { 
+                        <input required name='password' {...register("password", {
                             required: true,
-                             minLength: 6 ,
+                            minLength: 6,
                             //  pattern:/ (?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/
-                             
-                             })} type="password" placeholder="password" className="input input-bordered" />
+
+                        })} type="password" placeholder="password" className="input input-bordered" />
                         {errors.password?.type === "required" && (
                             <p role="alert">password is required</p>
                         )}
