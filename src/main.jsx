@@ -21,6 +21,9 @@ import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Allusers from './components/Allusers/Allusers.jsx';
 import AllSurveyinfo from './components/AllSurveyinfo/AllSurveyinfo.jsx';
 import useAxiospublic from './components/Hooks/useAxiospublic.jsx';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
+import PrivateAdmin from './components/PrivateRoute/PrivateAdmin.jsx';
+import Allpayment from './components/Allpayment/Allpayment.jsx';
 const queryClient = new QueryClient()
 const axiospublic = useAxiospublic()
 const router = createBrowserRouter([
@@ -34,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "create_survey",
-        element: <CreateSurvey></CreateSurvey>
+        element: <PrivateRoute> <CreateSurvey></CreateSurvey></PrivateRoute>
       },
       {
         path: "surveys",
@@ -43,7 +46,7 @@ const router = createBrowserRouter([
 
       {
         path: "details/:id",
-        element: <Details></Details>,
+        element: <PrivateRoute><Details></Details></PrivateRoute>,
         loader: () => axiospublic.get("/v1/allSurveys")
       },
       {
@@ -65,11 +68,15 @@ const router = createBrowserRouter([
       // admin
       {
         path: "allusers",
-        element: <Allusers></Allusers>
+        element: <PrivateAdmin><PrivateRoute><Allusers></Allusers></PrivateRoute></PrivateAdmin>
       },
       {
         path: "allSurveyinfo",
-        element: <AllSurveyinfo></AllSurveyinfo>
+        element:<PrivateRoute> <AllSurveyinfo></AllSurveyinfo></PrivateRoute>
+      },
+      {
+        path: "allPayment",
+        element:<PrivateRoute> <Allpayment></Allpayment> </PrivateRoute>
       },
     ]
   }

@@ -90,7 +90,7 @@ const Navbar = () => {
                                 <li> <NavLink to={"/"} >Home</NavLink> </li>
                                 <li> <NavLink to={"/surveys"} >All surveys</NavLink> </li>
                                 <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li>
-                                <li> <NavLink to={"/dashboard/allusers"} >dashboard</NavLink> </li>
+                                <li> <NavLink to={"/dashboard"} >dashboard</NavLink> </li>
                                 <li> <NavLink to={"/register"} >register</NavLink> </li>
                                 {
                                     user ? <button onClick={handleSignOut} className='btn btn-ghost mt-2 underline'> sign out</button> :

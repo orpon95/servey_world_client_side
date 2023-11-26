@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../Hooks/useAdmin';
+import useSurveyor from '../Hooks/useSurveyor';
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin()
-    const isSurveyor = false
+    const [isSurveyor] = useSurveyor()
     const isProuser = false
     return (
         <div>
@@ -22,6 +23,7 @@ const Dashboard = () => {
                                         <NavLink to={"/dashboard/allusers"}><li className='btn btn-primary block '>all users </li></NavLink>
 
                                         <NavLink to={"/dashboard/allSurveyinfo"}> <li className='btn btn-primary block  my-2'>all surveys info </li></NavLink>
+                                        <NavLink to={"/dashboard/allPayment"}><li className='btn btn-primary block '>all payment info </li></NavLink>
 
                                     </div>
 
@@ -31,6 +33,7 @@ const Dashboard = () => {
                                 isSurveyor
                                     ?
                                     <>
+                                    <p>surveyor</p>
 
                                     </>
                                     :
