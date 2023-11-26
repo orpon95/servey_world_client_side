@@ -20,8 +20,9 @@ import Authprovider from './Authprovider/Authprovider.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Allusers from './components/Allusers/Allusers.jsx';
 import AllSurveyinfo from './components/AllSurveyinfo/AllSurveyinfo.jsx';
+import useAxiospublic from './components/Hooks/useAxiospublic.jsx';
 const queryClient = new QueryClient()
-const axiosSecure = useAxiosSecure()
+const axiospublic = useAxiospublic()
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
       {
         path: "details/:id",
         element: <Details></Details>,
-        loader: () => axiosSecure.get("/v1/allSurveys")
+        loader: () => axiospublic.get("/v1/allSurveys")
       },
       {
         path: "login",
