@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 const colors2 = ['green', 'red', '#FFBB28', '#FF8042', 'orange', 'black'];
 
 
 const DashboardsurveyinfoCard = ({ data, refetch, index, likedatapercentagae, dislikedatapercentagae, yesPercantage, noParcantage }) => {
-
+    const [areaValue, setAreaValue] = useState("")
+    const [areaenable, setareaenable] = useState(false)
+    const axiosSecure = useAxiosSecure()
+    console.log("area", areaValue);
+    const areRef = useRef()
     // chart
     const getPath = (x, y, width, height) => {
         return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
@@ -55,6 +61,61 @@ const DashboardsurveyinfoCard = ({ data, refetch, index, likedatapercentagae, di
 
 
     const { title, category, short_description, _id, timestamp, usersid, like, yesNo } = data
+
+
+    // for making admimn
+    // for making admimn
+    const handleUnpublish = () => {
+        setareaenable(true)
+
+
+    }
+
+
+    const handleArea = (id) => {
+        // e.preventDefault()
+        // const form = e.target
+        // const area = form.area?.value
+        const arearefValue = areRef.current.value
+        console.log("arearefValue",arearefValue);
+
+        // setAreaValue(area)
+
+
+        const makeunPublish = {
+            status: "unpublish",
+            feedback: arearefValue
+
+        }
+        axiosSecure.patch(`/v1/unpublishSurvey/${id}`, makeunPublish)
+            .then(res => {
+                console.log("patch",res.data);
+                if (res?.data?.modifiedCount > 0) {
+
+                    Swal.fire({
+                        title: 'success!',
+                        text: 'product updated successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    });
+                    // setadminstate(true)
+                    refetch();
+
+                }
+                else {
+                    Swal.fire({
+                        title: 'error!',
+                        text: 'something wrong ,pls try again',
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    })
+
+
+                }
+            })
+
+    }
+
     return (
         <>
             <tr>
@@ -127,6 +188,32 @@ const DashboardsurveyinfoCard = ({ data, refetch, index, likedatapercentagae, di
                     </>
                     {/* yesnochart end */}
 
+
+                </td>
+                <td>
+                    {/* onClick={() => handleUnpublish(_id)} */}
+
+                    <button onClick={handleUnpublish} className='btn bg-primary'> Unpublish</button>
+                    < >
+
+                        {
+                            areaenable ?
+                                <>
+                                    <textarea ref={areRef} name='area' className="textarea textarea-bordered" placeholder="send your feedback"></textarea>
+                                    <button onClick={()=>handleArea(usersid)} type='submit' className='btn btn-primary  ' > send</button>
+
+                                </> :
+                                <>
+                                    <textarea disabled name='area' className="textarea textarea-bordered" placeholder="send your feedback"></textarea>
+                                    <button disabled type='submit' className='btn btn-primary  ' > send</button>
+
+                                </>
+                        }
+
+
+
+
+                    </>
 
                 </td>
 

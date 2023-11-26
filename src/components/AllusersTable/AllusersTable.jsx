@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const AllusersTable = ({ data, index, refetch }) => {
-    const { name, email, _id } = data
+    const { name, email, _id, role } = data
     const axiosSecure = useAxiosSecure()
     const [adminstate, setadminstate] = useState(false)
     // for delete users
@@ -77,6 +77,36 @@ const AllusersTable = ({ data, index, refetch }) => {
             })
 
     }
+    // for making surveuo
+    const handleSurveeyor = (id) => {
+        const makeSurveyor = { role: "surveyor" }
+        axiosSecure.patch(`/v1/usersRole/${id}`, makeSurveyor)
+            .then(res => {
+                if (res?.data?.modifiedCount > 0) {
+
+                    Swal.fire({
+                        title: 'success!',
+                        text: 'product updated successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    });
+                    setadminstate(true)
+                    refetch();
+
+                }
+                else {
+                    Swal.fire({
+                        title: 'error!',
+                        text: 'something wrong ,pls try again',
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    })
+
+
+                }
+            })
+
+    }
 
 
     return (
@@ -87,9 +117,9 @@ const AllusersTable = ({ data, index, refetch }) => {
                 <td> {email} </td>
                 <td>
                     {
-                        adminstate ?
+                        role === "admin" ?
                             <>
-                                <button disabled className='btn bg-primary text-red-600'> Made admin</button>
+                                <button disabled className='btn bg-primary text-red-600'>  admin</button>
 
                             </>
                             :
@@ -101,7 +131,21 @@ const AllusersTable = ({ data, index, refetch }) => {
 
                 </td>
                 <td>
-                    <button className='btn bg-primary'> Make surveyor</button>
+                    {
+                        role === "surveyor" ?
+
+                            <>
+                                <button disabled className='btn bg-primary text-red-600'>  surveyor</button>
+
+                            </>
+
+                            :
+                            <>
+                                <button onClick={() => handleSurveeyor(_id)} className='btn bg-primary'> Make surveyor</button>
+
+
+                            </>
+                    }
 
                 </td>
                 <td> <button className='btn bg-primary'> make pro users</button> </td>
