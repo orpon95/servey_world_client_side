@@ -116,7 +116,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     {/* Page content here */}
-                    
+
                 </div>
                 <div className="drawer-side z-10">
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -126,8 +126,16 @@ const Navbar = () => {
                         <li> <NavLink to={"/surveys"} >All surveys</NavLink> </li>
                         <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li>
                         <li> <NavLink to={"/dashboard/allusers"} >dashboard</NavLink> </li>
-                        <li> <NavLink to={"/login"} >login</NavLink> </li>
+                        {
+                            user ? <button onClick={handleSignOut} className='btn btn-ghost mt-2 underline'> sign out</button> :
+
+                                // <NavLink to={"/Login"}> <button className='btn'> Log in</button></NavLink>
+                                <NavLink to={"/Login"}><button className='btn btn-ghost underline'> Log in</button></NavLink>
+
+
+                        }
                         <li> <NavLink to={"/register"} >register</NavLink> </li>
+                        <button className='btn btn-ghost underline' onClick={handleGoole}>Sign in with google</button>
                     </ul>
                 </div>
             </div>
