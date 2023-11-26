@@ -17,6 +17,9 @@ import useAxiosSecure from './components/Hooks/useAxiosSecure.jsx';
 import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
 import Authprovider from './Authprovider/Authprovider.jsx';
+import Dashboard from './components/Dashboard/Dashboard.jsx';
+import Allusers from './components/Allusers/Allusers.jsx';
+import AllSurveyinfo from './components/AllSurveyinfo/AllSurveyinfo.jsx';
 const queryClient = new QueryClient()
 const axiosSecure = useAxiosSecure()
 const router = createBrowserRouter([
@@ -25,7 +28,7 @@ const router = createBrowserRouter([
     element: <MainLayout></MainLayout>,
     children: [
       {
-        index: true,
+        path:"/",
         element: <Home></Home>
       },
       {
@@ -36,30 +39,46 @@ const router = createBrowserRouter([
         path: "surveys",
         element: <Surveys></Surveys>
       },
+
       {
         path: "details/:id",
         element: <Details></Details>,
-        loader: ()=> axiosSecure.get("/v1/allSurveys")
+        loader: () => axiosSecure.get("/v1/allSurveys")
       },
       {
         path: "login",
         element: <Login></Login>
-        
+
       },
       {
         path: "register",
         element: <Register></Register>
-        
+
       },
     ]
   },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      // admin
+      {
+        path: "allusers",
+        element: <Allusers></Allusers>
+      },
+      {
+        path: "allSurveyinfo",
+        element: <AllSurveyinfo></AllSurveyinfo>
+      },
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Authprovider><RouterProvider router={router} /></Authprovider>
-      
+
 
     </QueryClientProvider>
 

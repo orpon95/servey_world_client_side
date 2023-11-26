@@ -137,7 +137,10 @@ const Details = () => {
             like,
             yesNo,
             areaValue,
-            usersid: _id
+            usersid: _id,
+            title,
+            category,
+            short_description,
         }
         axiosSecure.post("/v1/usersSurveyInfo", usersSurveyInfo)
             .then(res => {
@@ -274,7 +277,7 @@ const Details = () => {
 
                             {/*comments */}
                             <div className='text-center'>
-                                <label className=" cursor-pointer">
+                                <label className=" flex flex-col cursor-pointer">
                                     <span className="label-text text-xl font-bold mx-3" >add comments</span>
                                     <textarea onChange={handletextArea} className="textarea textarea-primary" placeholder="Bio"></textarea>
                                 </label>
