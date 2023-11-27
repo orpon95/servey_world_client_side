@@ -1,0 +1,21 @@
+.color-changing-text {
+    animation: colorChange 5s linear infinite; /* Adjust the duration and timing function as needed */
+  }
+  
+  @keyframes colorChange {
+    0% {
+      color: rgb(255, 0, 242); /* Starting color */
+    }
+    25% {
+      color: rgb(84, 3, 96); /* Color at 25% of the animation */
+    }
+    50% {
+      color: rgb(76, 4, 54); /* Color at 50% of the animation */
+    }
+    75% {
+      color: orange; /* Color at 75% of the animation */
+    }
+    100% {
+      color: rgb(16, 112, 171); /* Back to the starting color for a smooth loop */
+    }
+  }

@@ -20,7 +20,7 @@ const Suerveyscard2 = ({ data }) => {
                     </>
                     :
                     <>
-                        <div className="card card-compact  bg-base-100 shadow-xl">
+                        <div className="card card-compact  shadow-black shadow-xl">
 
                             <div className="card-body">
                                 <h2 className="card-title text-lg font-black">title: <span className='text-lg font-semibold'>{title}</span> </h2>
@@ -36,14 +36,14 @@ const Suerveyscard2 = ({ data }) => {
 
                                         <>
                                             <div className="card-actions justify-center">
-                                                <Link to={"/novote"} > <button className="btn btn-primary">click  vote</button></Link>
+                                                <Link to={"/novote"} > <button className="btn bg-cyan-300 opacity-70">click  vote</button></Link>
                                             </div>
 
                                         </> :
                                         isSurveyor ?
                                             <>
                                                 <div className="card-actions justify-center">
-                                                    <Link to={"/novote"} > <button className="btn btn-primary">click  vote</button></Link>
+                                                    <Link to={"/novote"} > <button className="btn bg-cyan-300 opacity-70">click  vote</button></Link>
                                                 </div>
                                             </>
 

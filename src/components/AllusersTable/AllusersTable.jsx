@@ -124,7 +124,7 @@ const AllusersTable = ({ data, index, refetch }) => {
                             </>
                             :
                             <>
-                                <button onClick={() => handleAdmin(_id)} className='btn bg-primary'> Make admin</button>
+                                <button onClick={() => handleAdmin(_id)} className='btn bg-cyan-300 opacity-70'> Make admin</button>
                             </>
                     }
 
@@ -141,7 +141,7 @@ const AllusersTable = ({ data, index, refetch }) => {
 
                             :
                             <>
-                                <button onClick={() => handleSurveeyor(_id)} className='btn bg-primary'> Make surveyor</button>
+                                <button onClick={() => handleSurveeyor(_id)} className='btn bg-cyan-300 opacity-70'> Make surveyor</button>
 
 
                             </>
@@ -161,7 +161,7 @@ const AllusersTable = ({ data, index, refetch }) => {
                      </>
                    }
                 </td>
-                <td><button onClick={() => handleremove(_id)} className='btn bg-primary'> remove</button></td>
+                <td><button onClick={() => handleremove(_id)} className='btn bg-cyan-300 opacity-70'> remove</button></td>
             </tr>
         </>
     );

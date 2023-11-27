@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../Authprovider/Authprovider';
 import useAxiospublic from '../Hooks/useAxiospublic';
 import Swal from 'sweetalert2';
+import "./Navbar.css"
 
 const Navbar = () => {
     const axiosPublic = useAxiospublic()
@@ -77,13 +78,13 @@ const Navbar = () => {
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
-                    <div className="w-full navbar bg-base-300">
+                    <div className="w-full navbar shadow-lg shadow-black border-2 border-black rounded-lg ">
                         <div className="flex-none lg:hidden">
                             <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                             </label>
                         </div>
-                        <div className="flex-1 px-2 mx-2">Survey World</div>
+                        <div className="flex-1 px-2 mx-2 color-changing-text">Survey World</div>
                         <div className="flex-none hidden lg:block">
                             <ul className="menu menu-horizontal">
                                 {/* Navbar menu content here */}
