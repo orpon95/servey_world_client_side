@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Update = () => {
 
@@ -73,6 +74,28 @@ const Update = () => {
             title, category, timestamp, short_description,
         }
         console.log("updatedProduct", updatedProduct);
+        axiosSecure.put(`/api/v1/surveyUpdate/${_id}`, updatedProduct)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: 'success!',
+                        text: 'product updated successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+                else {
+                    Swal.fire({
+                        title: 'error!',
+                        text: 'something wrong ,pls try again',
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    })
+
+
+                }
+            })
 
     }
 
@@ -118,7 +141,7 @@ const Update = () => {
 
                     </div>
 
-                   
+
 
 
                     <div className='text-center'>
