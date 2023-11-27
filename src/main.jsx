@@ -28,6 +28,7 @@ import PrivateSurveyor from './components/PrivateRoute/PrivateSurveyor.jsx';
 import Update from './components/Update/Update.jsx';
 import SurveysInfo from './components/SurveysInfo/SurveysInfo.jsx';
 import Payment from './components/Payment/Payment.jsx';
+import NovotePage from './components/NovotePage/NovotePage.jsx';
 const queryClient = new QueryClient()
 const axiospublic = useAxiospublic()
 const router = createBrowserRouter([
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
 
       {
         path: "details/:id",
-        element: <PrivateRoute><Details></Details></PrivateRoute>,
+        element: <PrivateRoute><Details></Details></PrivateRoute> ,
         loader: () => axiospublic.get("/v1/allSurveys")
       },
       {
@@ -67,6 +68,11 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>
+
+      },
+      {
+        path: "novote",
+        element: <NovotePage></NovotePage>
 
       },
     ]

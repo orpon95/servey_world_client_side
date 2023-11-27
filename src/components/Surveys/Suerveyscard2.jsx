@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useSurveyor from '../Hooks/useSurveyor';
+import usePro from '../Hooks/usePro';
+import useAdmin from '../Hooks/useAdmin';
 
 const Suerveyscard2 = ({ data }) => {
     const { title, category, short_description, _id, timestamp, status } = data
     const [isSurveyor] = useSurveyor()
+    const [isPro] = usePro()
+    const [isAdmin] = useAdmin()
     return (
         <div>
 
@@ -23,9 +27,36 @@ const Suerveyscard2 = ({ data }) => {
                                 <p className='text-lg font-black'> category: <span className='text-lg font-semibold'  >{category}</span></p>
                                 <p className='text-xl font-bold'>{short_description}</p>
                                 <p className='text-lg font-black'>Survey created at : <span className='text-lg font-semibold'>{timestamp}</span></p>
-                                <div className="card-actions justify-center">
-                                    <Link to={`/details/${_id}`} > <button className="btn btn-primary">Details</button></Link>
-                                </div>
+
+
+                                {/* vote button */}
+
+                                {
+                                    isAdmin ?
+
+                                        <>
+                                            <div className="card-actions justify-center">
+                                                <Link to={"/novote"} > <button className="btn btn-primary">click  vote</button></Link>
+                                            </div>
+
+                                        </> :
+                                        isSurveyor ?
+                                            <>
+                                                <div className="card-actions justify-center">
+                                                    <Link to={"/novote"} > <button className="btn btn-primary">click  vote</button></Link>
+                                                </div>
+                                            </>
+
+                                            :
+
+                                            <>
+                                                <div className="card-actions justify-center">
+                                                    <Link to={`/details/${_id}`} > <button className="btn btn-primary">click to vote</button></Link>
+                                                </div>
+
+                                            </>
+                                }
+
                                 {/* update button */}
 
                                 {

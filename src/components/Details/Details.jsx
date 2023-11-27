@@ -1,16 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import useAxiospublic from '../Hooks/useAxiospublic';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { authContext } from '../../Authprovider/Authprovider';
+import usePro from '../Hooks/usePro';
 
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 const colors2 = ['green', 'red', '#FFBB28', '#FF8042', 'orange', 'black'];
 
 const Details = () => {
     const axiosSecure = useAxiosSecure()
+    const [isPro, isProLoading] = usePro()
+    const { user } = useContext(authContext)
     // const [surveysData,setsurveysData] = useState([])
     const [yesNo, setYesNo] = useState("")
     const [like, setlike] = useState("")
@@ -35,6 +39,12 @@ const Details = () => {
 
 
     // })
+
+    console.log(data);
+    // all users load start
+
+
+    // all users load end
 
 
 
@@ -137,7 +147,7 @@ const Details = () => {
         setfeedbackValue(e.target.value)
 
     }
-    
+
     const buttonClick = () => {
         console.log(areaValue);
 
@@ -152,7 +162,7 @@ const Details = () => {
             short_description,
             feedbackValue,
             timestamp
-            
+
         }
         axiosSecure.post("/v1/usersSurveyInfo", usersSurveyInfo)
             .then(res => {
@@ -287,14 +297,44 @@ const Details = () => {
                             }
 
 
-                            {/*comments */}
-                            <div className='text-center'>
-                                <label className=" flex flex-col cursor-pointer">
-                                    <span className="label-text text-xl font-bold mx-3" >add comments</span>
-                                    <textarea onChange={handletextArea} className="textarea textarea-primary" placeholder="Bio"></textarea>
-                                </label>
+                            {
+                                isPro ?
 
-                            </div>
+                                    <>
+                                        {/*comments */}
+                                        <div className='text-center'>
+                                            <label className=" flex flex-col cursor-pointer">
+                                                <span className="label-text text-xl font-bold mx-3" >add comments</span>
+                                                <textarea onChange={handletextArea} className="textarea textarea-primary" placeholder="Bio"></textarea>
+                                            </label>
+
+                                        </div>
+
+                                    </>
+                                    :
+                                    <>
+                                        {/*comments */}
+                                        <div className='text-center'>
+                                            <label className=" flex flex-col cursor-pointer">
+                                                <span className="label-text text-xl font-bold mx-3" >add comments</span>
+                                                <textarea disabled className="textarea textarea-primary" placeholder="Bio"></textarea>
+                                            </label>
+
+                                        </div>
+
+                                    </>
+                            }
+
+
+
+
+
+
+
+
+
+
+
 
                             <h1 className='text-lg font-bold'>was this survey helpful?</h1>
                             {/*like dislike */}
