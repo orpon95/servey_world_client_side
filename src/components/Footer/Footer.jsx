@@ -6,7 +6,7 @@ const Footer = () => {
             <footer className=" my-5 shadow-2xl shadow-black footer p-10  text-neutral-content">
                 <nav className='flex justify-center items-center'>
                     <span className='w-[50px] h-[50px] rounded-full'><img className='w-full rounded-[50%]' src="https://i.ibb.co/PjDkYcs/png-transparent-career-development-job-application-for-employment-business-career-miscellaneous-trad.png" alt="" /></span>
-                    <span className='mx-2 font-poppins font-bold text-3xl text-black  italic'>Job city</span>
+                    <span className='mx-2 font-poppins font-bold text-3xl text-black  italic'>survey world</span>
                 </nav>
                 <nav>
                     <header className=" text-black footer-title">contact information</header>

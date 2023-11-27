@@ -27,6 +27,7 @@ import Allpayment from './components/Allpayment/Allpayment.jsx';
 import PrivateSurveyor from './components/PrivateRoute/PrivateSurveyor.jsx';
 import Update from './components/Update/Update.jsx';
 import SurveysInfo from './components/SurveysInfo/SurveysInfo.jsx';
+import Payment from './components/Payment/Payment.jsx';
 const queryClient = new QueryClient()
 const axiospublic = useAxiospublic()
 const router = createBrowserRouter([
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>
+
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>
 
       },
     ]

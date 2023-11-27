@@ -148,7 +148,19 @@ const AllusersTable = ({ data, index, refetch }) => {
                     }
 
                 </td>
-                <td> <button className='btn bg-primary'> make pro users</button> </td>
+                <td>
+                   {
+                    role === "Pro_user" ?
+                     <>
+                       <p>pro users</p>
+
+                     </> 
+                     : 
+                     <>
+                     <p>pending</p>
+                     </>
+                   }
+                </td>
                 <td><button onClick={() => handleremove(_id)} className='btn bg-primary'> remove</button></td>
             </tr>
         </>

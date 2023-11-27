@@ -37,7 +37,7 @@ const Allusers = () => {
                             <th>email</th>
                             <th>make admin</th>
                             <th>make Surveyor</th>
-                            <th>make pro Users</th>
+                            <th>pro users status</th>
                             <th>delete</th>
                         </tr>
                     </thead>
