@@ -15,6 +15,8 @@ const Details = () => {
     const [yesNo, setYesNo] = useState("")
     const [like, setlike] = useState("")
     const [areaValue, setAreaValue] = useState("")
+    const [feedbackValue, setfeedbackValue] = useState("")
+    console.log("fedd", feedbackValue);
     const [usersSurveyData, setusersSurveyData] = useState([])
     console.log("usersSurveyData", usersSurveyData);
     const { id } = useParams()
@@ -131,8 +133,15 @@ const Details = () => {
         setAreaValue(e.target.value)
 
     }
+    const handlefeedback = (e) => {
+        setfeedbackValue(e.target.value)
+
+    }
+    
     const buttonClick = () => {
         console.log(areaValue);
+
+        const timestamp = new Date()
         const usersSurveyInfo = {
             like,
             yesNo,
@@ -141,6 +150,9 @@ const Details = () => {
             title,
             category,
             short_description,
+            feedbackValue,
+            timestamp
+            
         }
         axiosSecure.post("/v1/usersSurveyInfo", usersSurveyInfo)
             .then(res => {
@@ -326,13 +338,23 @@ const Details = () => {
 
                                 </div>
                             }
+                            {/*feddbach/report */}
+                            <div className='text-center'>
+                                <label className=" flex flex-col cursor-pointer">
+                                    <span className="label-text text-xl font-bold mx-3" >add Your feedback</span>
+                                    <textarea onChange={handlefeedback} className="textarea textarea-primary" placeholder="Bio"></textarea>
+                                </label>
+
+                            </div>
 
                             {/* button submit */}
                             <div className='text-center'>
                                 <button type='submit' onClick={buttonClick} className='btn btn-ghost border-2  shadow-2xl  border-cyan-300'  > click to send your vote </button>
                             </div>
 
+
                             {/* form end */}
+
 
                         </div>
                     </div>

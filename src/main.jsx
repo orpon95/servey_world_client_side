@@ -24,6 +24,9 @@ import useAxiospublic from './components/Hooks/useAxiospublic.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
 import PrivateAdmin from './components/PrivateRoute/PrivateAdmin.jsx';
 import Allpayment from './components/Allpayment/Allpayment.jsx';
+import PrivateSurveyor from './components/PrivateRoute/PrivateSurveyor.jsx';
+import Update from './components/Update/Update.jsx';
+import SurveysInfo from './components/SurveysInfo/SurveysInfo.jsx';
 const queryClient = new QueryClient()
 const axiospublic = useAxiospublic()
 const router = createBrowserRouter([
@@ -32,12 +35,13 @@ const router = createBrowserRouter([
     element: <MainLayout></MainLayout>,
     children: [
       {
-        path:"/",
+        path: "/",
         element: <Home></Home>
       },
+
       {
-        path: "create_survey",
-        element: <PrivateRoute> <CreateSurvey></CreateSurvey></PrivateRoute>
+        path: "update/:id",
+        element: <PrivateRoute><Update></Update></PrivateRoute>
       },
       {
         path: "surveys",
@@ -63,7 +67,7 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       // admin
       {
@@ -72,12 +76,23 @@ const router = createBrowserRouter([
       },
       {
         path: "allSurveyinfo",
-        element:<PrivateRoute> <AllSurveyinfo></AllSurveyinfo></PrivateRoute>
+        element: <PrivateRoute> <AllSurveyinfo></AllSurveyinfo></PrivateRoute>
       },
       {
         path: "allPayment",
-        element:<PrivateRoute> <Allpayment></Allpayment> </PrivateRoute>
+        element: <PrivateRoute> <Allpayment></Allpayment> </PrivateRoute>
       },
+
+      // for surveyor
+      {
+        path: "create_survey",
+        element: <PrivateSurveyor><PrivateRoute> <CreateSurvey></CreateSurvey></PrivateRoute></PrivateSurveyor>
+      },
+      {
+        path: "surveysinfo",
+        element: <PrivateSurveyor><PrivateRoute>  <SurveysInfo></SurveysInfo> </PrivateRoute></PrivateSurveyor>
+      },
+
     ]
   }
 ]);

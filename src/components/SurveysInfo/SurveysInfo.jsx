@@ -1,12 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
-import DashboardsurveyinfoCard from './DashboardsurveyinfoCard/DashboardsurveyinfoCard';
+import { useQuery, useQueryErrorResetBoundary } from '@tanstack/react-query';
+import Surveysinfotable from './Surveysinfotable';
+// import Surveysinfotable from './Surveysinfotable';
 
-const AllSurveyinfo = () => {
+const SurveysInfo = () => {
     const axiosSecure = useAxiosSecure()
     const [usersSurveyData, setusersSurveyData] = useState([])
-
+    console.log("usersSurveyData", usersSurveyData)
     // get all data of user seurvey info using tanstwsed query
     const { data: allData, isLoading, isFetching, refetch } = useQuery({
         queryKey: ["addedData"],
@@ -17,16 +18,13 @@ const AllSurveyinfo = () => {
 
 
     })
-    console.log("allData", allData);
+    // console.log("allData", allData);
 
     useEffect(() => {
         setusersSurveyData(allData)
         console.log("allData", allData);
 
     }, [allData])
-
-    console.log("usersSurveyData", usersSurveyData);
-
     // about chart
 
     const likeData = usersSurveyData?.filter(data => data.like === "like")
@@ -37,7 +35,6 @@ const AllSurveyinfo = () => {
     console.log("yesData", yesData?.length);
     const noData = usersSurveyData?.filter(data => data.yesNo === "no")
     console.log("noData", noData?.length);
-
 
     // percantage
     const totalDataLength = usersSurveyData?.length
@@ -54,10 +51,6 @@ const AllSurveyinfo = () => {
     const yesPercantage = (yesDataLength * 100) / totalDataLength
     const noParcantage = (100 - yesPercantage)
 
-
-
-
-
     return (
         <div>
             <div className="overflow-x-auto">
@@ -72,24 +65,34 @@ const AllSurveyinfo = () => {
                             <th>like-dislike chart</th>
                             <th>Yesno chart</th>
                             <th>created time</th>
-                            <th>unpublish</th>
+                            <th>users feedback</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
                         {
-                            usersSurveyData?.map((user, index) => <DashboardsurveyinfoCard key={user._id}
-                             data={user} 
-                             refetch={refetch}
-                              index={index} 
-                              likedatapercentagae={likedatapercentagae}
-                              dislikedatapercentagae={dislikedatapercentagae}
-                              yesPercantage={yesPercantage}
-                              noParcantage={noParcantage}
-
-                               ></DashboardsurveyinfoCard>)
+                            usersSurveyData?.map((user, index) => <Surveysinfotable key={user._id}
+                                data={user}
+                                refetch={refetch}
+                                index={index}
+                                likedatapercentagae={likedatapercentagae}
+                                dislikedatapercentagae={dislikedatapercentagae}
+                                yesPercantage={yesPercantage}
+                                noParcantage={noParcantage} ></Surveysinfotable>)
                         }
+                        {/* {
+                            usersSurveyData?.map((user, index) => <Surveysinfotable key={user._id}
+                                data={user}
+                                refetch={refetch}
+                                index={index}
+                                likedatapercentagae={likedatapercentagae}
+                                dislikedatapercentagae={dislikedatapercentagae}
+                                yesPercantage={yesPercantage}
+                                noParcantage={noParcantage}
+
+                            ></Surveysinfotable>)
+                        } */}
 
 
 
@@ -100,4 +103,4 @@ const AllSurveyinfo = () => {
     );
 };
 
-export default AllSurveyinfo;
+export default SurveysInfo;

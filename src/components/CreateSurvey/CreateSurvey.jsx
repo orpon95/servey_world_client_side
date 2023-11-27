@@ -2,9 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { NavLink } from 'react-router-dom';
+import useSurveyor from '../Hooks/useSurveyor';
 
 const CreateSurvey = () => {
     // const [timestamp,settimestamp] = useState("")
+    const [isSurveyor] = useSurveyor()
 
     const axiosSecure = useAxiosSecure()
     const handleAdd = (e) => {
@@ -16,8 +19,8 @@ const CreateSurvey = () => {
         const options = 0;
         const like_dislike = 0;
         const timestamp = new Date()
-        
-       
+
+
 
 
 
@@ -124,6 +127,8 @@ const CreateSurvey = () => {
                 </div>
 
             </form>
+
+           
 
         </div>
     );

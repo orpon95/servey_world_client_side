@@ -13,7 +13,7 @@ const useSurveyor = () => {
 
 
 
-            return await res.data?.admin
+            return await res.data?.surveyor
         }
 
 

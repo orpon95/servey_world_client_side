@@ -33,7 +33,13 @@ const Dashboard = () => {
                                 isSurveyor
                                     ?
                                     <>
-                                    <p>surveyor</p>
+                                        <div className=''>
+                                            <NavLink to={"/dashboard/create_survey"}><li className='btn my-5 btn-primary block '>create survey </li></NavLink>
+                                            <NavLink to={"/dashboard/surveysinfo"}><li className='btn btn-primary block '>surveysinfo </li></NavLink>
+
+                                           
+
+                                        </div>
 
                                     </>
                                     :
@@ -44,7 +50,7 @@ const Dashboard = () => {
                                         </>
                                         :
                                         <>
-                                        <p>usera</p>
+                                            <p>usera</p>
 
                                         </>
 
