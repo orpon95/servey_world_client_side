@@ -13,18 +13,26 @@ const colors2 = ['green', 'red', '#FFBB28', '#FF8042', 'orange', 'black'];
 
 const Details = () => {
     const axiosSecure = useAxiosSecure()
+    const axiospublic = useAxiospublic()
     const [isPro, isProLoading] = usePro()
     const { user } = useContext(authContext)
     // const [surveysData,setsurveysData] = useState([])
+    const [title, settitle] = useState(null)
+    const [category, setcategory] = useState(null)
+    const [short_description, setshort_description] = useState(null)
+    const [_id, set_id] = useState(null)
+    const [timestamp, settimestamp] = useState(null)
     const [yesNo, setYesNo] = useState("")
     const [like, setlike] = useState("")
     const [areaValue, setAreaValue] = useState("")
     const [feedbackValue, setfeedbackValue] = useState("")
     console.log("fedd", feedbackValue);
     const [usersSurveyData, setusersSurveyData] = useState([])
+    const [details, setdetails] = useState([])
+    console.log("detailsstae", details);
     console.log("usersSurveyData", usersSurveyData);
     const { id } = useParams()
-    const { data } = useLoaderData()
+    // const { data } = useLoaderData()
     const [confirm, setConfirm] = useState(false)
     // console.log("data", data);
     // const axiosSecure = useAxiosSecure()
@@ -40,7 +48,7 @@ const Details = () => {
 
     // })
 
-    console.log(data);
+    // console.log(data);
     // all users load start
 
 
@@ -48,9 +56,8 @@ const Details = () => {
 
 
 
-    const singleseurveyData = data?.find(data => data?._id === id)
-    // console.log("singleseurveyData", singleseurveyData);
-    const { title, category, short_description, _id } = singleseurveyData
+
+    // const { title, category, short_description, _id } = singleseurveyData
 
     // const handleSurvey = (e) => {
     //     e.preventDafault()
@@ -66,13 +73,67 @@ const Details = () => {
     // }
 
 
+    // details data load part strt
+
+
+    const { data: detailsData, } = useQuery({
+        queryKey: ["details"],
+        queryFn: async () => {
+            const res = await axiospublic.get("/v1/allSurveys")
+            return await res.data
+        }
+
+
+    })
+    console.log("detailsData", detailsData);
+    const singleseurveyData = detailsData?.find(data => data?._id === id)
+    console.log("singleseurveyData", singleseurveyData);
+
+    // old useeffect strt
+
+    // useEffect(() => {
+    //     setdetails(detailsData)
+    //     console.log("detailsData", detailsData);
+
+    // }, [detailsData])
+    // old useffct end
+
+    // neeffect strt
+    // useeffeect
+    useEffect(() => {
+        if (singleseurveyData) {
+            const { title, category, short_description, _id, timestamp } = singleseurveyData
+            //    console.log(email);
+            settitle(title)
+            setcategory(category)
+            setshort_description(short_description)
+            set_id(_id)
+            settimestamp(timestamp)
+
+            //    setfindedData({email, categories, deadline, job_title, max_price, min_price, short_description, _id })
+        }
+        else {
+            console.log("sry no data");
+        }
+
+
+    }, [singleseurveyData])
+    // neweffct strt
+
+
+
+
+    // details data load part end
+
+
+
 
 
     // get all datr using tanstwsed query
     const { data: allData, isLoading, isFetching, refetch } = useQuery({
         queryKey: ["addedData"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/v1/usersSurveyInfo")
+            const res = await axiospublic.get("/v1/usersSurveyInfo")
             return await res.data
         }
 
@@ -412,6 +473,7 @@ const Details = () => {
 
 
         </div>
+        // <div>dethh</div>
     );
 };
 

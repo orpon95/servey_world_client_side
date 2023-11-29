@@ -13,7 +13,7 @@ import CreateSurvey from './components/CreateSurvey/CreateSurvey.jsx';
 import Surveys from './components/Surveys/Surveys.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Details from './components/Details/Details.jsx';
-import useAxiosSecure from './components/Hooks/useAxiosSecure.jsx';
+// import useAxiosSecure from './components/Hooks/useAxiosSecure.jsx';
 import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
 import Authprovider from './Authprovider/Authprovider.jsx';
@@ -32,7 +32,7 @@ import NovotePage from './components/NovotePage/NovotePage.jsx';
 import PaymentHistory from './components/PaymentHistory/PaymentHistory.jsx';
 import AllpaymentHistory from './components/AllpaymentHistory/AllpaymentHistory.jsx';
 const queryClient = new QueryClient()
-const axiospublic = useAxiospublic()
+// const axiospublic = useAxiospublic()
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
       {
         path: "details/:id",
         element: <PrivateRoute><Details></Details></PrivateRoute>,
-        loader: () => axiospublic.get("/v1/allSurveys")
+        // loader: () => axiospublic.get("/v1/allSurveys")
       },
       {
         path: "login",
@@ -69,8 +69,7 @@ const router = createBrowserRouter([
       },
       {
         path: "payment",
-        element: <Payment></Payment>
-
+        element: <PrivateRoute> <Payment></Payment></PrivateRoute>
       },
       {
         path: "novote",
@@ -96,6 +95,10 @@ const router = createBrowserRouter([
         path: "allPayment",
         element: <PrivateRoute> <Allpayment></Allpayment> </PrivateRoute>
       },
+      {
+        path: "allpaymentHistory",
+        element: <PrivateRoute>  <AllpaymentHistory></AllpaymentHistory> </PrivateRoute>
+      },
 
       // for surveyor
       {
@@ -111,10 +114,7 @@ const router = createBrowserRouter([
         path: "paymentHistory",
         element: <PrivateRoute>  <PaymentHistory></PaymentHistory> </PrivateRoute>
       },
-      {
-        path: "allpaymentHistory",
-        element: <PrivateRoute>  <AllpaymentHistory></AllpaymentHistory> </PrivateRoute>
-      },
+
 
     ]
   }

@@ -86,64 +86,69 @@ const Navbar = () => {
                         </div>
                         <div className="flex-1 px-2 mx-2 color-changing-text">Survey World</div>
                         <div className="flex-none hidden lg:block">
-                            <ul className="menu menu-horizontal">
+                            <ul className="menu menu-horizontal space-x-2">
                                 {/* Navbar menu content here */}
-                                <li> <NavLink to={"/"} >Home</NavLink> </li>
-                                <li> <NavLink to={"/surveys"} >All surveys</NavLink> </li>
-                                <li> <NavLink to={"/payment"} > Pro Users</NavLink> </li>
+                                <NavLink to={"/"} > <button className='btn bg-cyan-300' >Home</button> </NavLink>
+                                <NavLink to={"/surveys"} ><button className='btn bg-cyan-300' >All surveys</button></NavLink>
+
+                                <NavLink to={"/payment"} > <button className='btn bg-cyan-300' >Pro users</button></NavLink>
+
                                 {/* <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li> */}
-                                <li> <NavLink to={"/dashboard"} >dashboard</NavLink> </li>
-                                <li> <NavLink to={"/register"} >register</NavLink> </li>
-                                {
-                                    user ? <button onClick={handleSignOut} className='btn btn-ghost mt-2 underline'> sign out</button> :
-
-                                        // <NavLink to={"/Login"}> <button className='btn'> Log in</button></NavLink>
-                                        <NavLink to={"/Login"}><button className='btn btn-ghost underline'> Log in</button></NavLink>
 
 
-                                }
-                                <button className='btn btn-ghost underline' onClick={handleGoole}>Sign in with google</button>
-                                {
-                                    user && <div className='flex items-center text-center gap-3'>
-                                        <h1 className='underline p-2 rounded-lg font-bold'>
-                                            {user?.displayName}
-                                        </h1>
-                                        <p className='self-center'><img className='w-3/6 h-[40px] rounded-full ' src={user?.photoURL} alt="" /></p>
+                                <NavLink to={"/dashboard"} ><button className='btn bg-cyan-300' >dashboard</button></NavLink>
+                                <NavLink to={"/register"} ><button className='btn bg-cyan-300' >register</button></NavLink> 
+                            {
+                                user ? <button onClick={handleSignOut} className='btn bg-cyan-300 mt-2 underline'> sign out</button> :
+
+                                    // <NavLink to={"/Login"}> <button className='btn'> Log in</button></NavLink>
+                                    <NavLink to={"/Login"}><button className='btn bg-cyan-300 underline'> Log in</button></NavLink>
 
 
-                                    </div>
-                                }
+                            }
+                            <button className='btn bg-cyan-300 underline' onClick={handleGoole}>Sign in with google</button>
+                            {
+                                user && <div className='flex items-center text-center gap-3'>
+                                    <h1 className='underline p-2 rounded-lg font-bold'>
+                                        {user?.displayName}
+                                    </h1>
+                                    <p className='self-center'><img className='w-3/6 h-[40px] rounded-full ' src={user?.photoURL} alt="" /></p>
 
-                            </ul>
-                        </div>
+
+                                </div>
+                            }
+
+                        </ul>
                     </div>
-                    {/* Page content here */}
-
                 </div>
-                <div className="drawer-side z-10">
-                    <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-base-200">
-                        {/* Sidebar content here */}
-                        <li> <NavLink to={"/"} >Home</NavLink> </li>
-                        <li> <NavLink to={"/surveys"} >All surveys</NavLink> </li>
-                        <li> <NavLink to={"/payment"} > Pro Users</NavLink> </li>
-                        {/* <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li> */}
-                        <li> <NavLink to={"/dashboard/allusers"} >dashboard</NavLink> </li>
-                        {
-                            user ? <button onClick={handleSignOut} className='btn btn-ghost mt-2 underline'> sign out</button> :
+                {/* Page content here */}
 
-                                // <NavLink to={"/Login"}> <button className='btn'> Log in</button></NavLink>
-                                <NavLink to={"/Login"}><button className='btn btn-ghost underline'> Log in</button></NavLink>
-
-
-                        }
-                        <li> <NavLink to={"/register"} >register</NavLink> </li>
-                        <button className='btn btn-ghost underline' onClick={handleGoole}>Sign in with google</button>
-                    </ul>
-                </div>
             </div>
+            <div className="drawer-side z-10">
+                <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
+                <ul className="menu p-4 w-80 min-h-full bg-base-200">
+                    {/* Sidebar content here */}
+                    
+                     <NavLink to={"/"} ><button className='btn btn-ghost underline'> Home</button></NavLink>
+                     <NavLink to={"/surveys"} ><button className='btn btn-ghost underline'> all surveys</button></NavLink> 
+                     <NavLink to={"/payment"} > <button className='btn btn-ghost underline'> pro users</button></NavLink> 
+                    {/* <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li> */}
+                    <li> <NavLink to={"/dashboard"} ><button className='btn btn-ghost underline'> dashboard</button></NavLink> </li>
+                    {
+                        user ? <button onClick={handleSignOut} className='btn btn-ghost mt-2 underline'> sign out</button> :
 
+                            // <NavLink to={"/Login"}> <button className='btn'> Log in</button></NavLink>
+                            <NavLink to={"/Login"}><button className='btn btn-ghost underline'> Log in</button></NavLink>
+
+
+                    }
+                     <NavLink to={"/register"} ><button className='btn btn-ghost underline'> register</button></NavLink> 
+                    <button className='btn btn-ghost underline' onClick={handleGoole}>Sign in with google</button>
+                </ul>
+            </div>
         </div>
+
+        </div >
     );
 };
 

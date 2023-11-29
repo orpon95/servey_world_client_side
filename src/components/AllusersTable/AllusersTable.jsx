@@ -2,11 +2,22 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import useAdmin from '../Hooks/useAdmin';
+import usePro from '../Hooks/usePro';
+import useSurveyor from '../Hooks/useSurveyor';
 
 const AllusersTable = ({ data, index, refetch }) => {
     const { name, email, _id, role } = data
     const axiosSecure = useAxiosSecure()
     const [adminstate, setadminstate] = useState(false)
+    const [isAdmin] = useAdmin()
+    const [isPro]= usePro()
+    const [isSurveyor]=useSurveyor()
+
+    // const admincheck = data.
+
+
+
     // for delete users
     const handleremove = (id) => {
 
@@ -111,7 +122,7 @@ const AllusersTable = ({ data, index, refetch }) => {
 
     return (
         <>
-            <tr>
+            <tr className=' text-red-600 font-extrabold'>
                 <th>{index + 1}</th>
                 <td>{name}</td>
                 <td> {email} </td>
@@ -161,6 +172,20 @@ const AllusersTable = ({ data, index, refetch }) => {
                      </>
                    }
                 </td>
+                {/* role */}
+
+                <td>  
+                    {
+                        role == "admin" ? <> admin</> : role == "surveyor" ? <>surveyor</> : role == "Pro_user" ? <>pro_user</> : "user"
+
+
+                    }
+
+
+                </td>
+
+
+
                 <td><button onClick={() => handleremove(_id)} className='btn bg-cyan-300 opacity-70'> remove</button></td>
             </tr>
         </>
