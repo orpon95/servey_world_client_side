@@ -60,42 +60,56 @@ const AllSurveyinfo = () => {
 
     return (
         <div>
-            <div className="overflow-x-auto">
-                <table className="table table-zebra">
-                    {/* head */}
-                    <thead>
-                        <tr className='text-center'>
-                            <th></th>
-                            <th>title</th>
-                            <th>category</th>
-                            <th>Queastion asked</th>
-                            <th>like-dislike chart</th>
-                            <th>Yesno chart</th>
-                            <th>created time</th>
-                            <th>unpublish</th>
+            {
+                isLoading ?
+                    <>
+                        <h1 className='text-3xl font-black text-center mt-7'>data is loading, pls wait</h1>
+                        <span className="loading loading-spinner loading-lg text-3xl font-black mx-auto"></span>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* row 1 */}
-                        {
-                            usersSurveyData?.map((user, index) => <DashboardsurveyinfoCard key={user._id}
-                             data={user} 
-                             refetch={refetch}
-                              index={index} 
-                              likedatapercentagae={likedatapercentagae}
-                              dislikedatapercentagae={dislikedatapercentagae}
-                              yesPercantage={yesPercantage}
-                              noParcantage={noParcantage}
+                    </>
+                    :
 
-                               ></DashboardsurveyinfoCard>)
-                        }
+                    <>
+
+                        <div className="overflow-x-auto">
+                            <table className="table table-zebra">
+                                {/* head */}
+                                <thead>
+                                    <tr className='text-center'>
+                                        <th></th>
+                                        <th>title</th>
+                                        <th>category</th>
+                                        <th>Queastion asked</th>
+                                        <th>like-dislike chart</th>
+                                        <th>Yesno chart</th>
+                                        <th>created time</th>
+                                        <th>unpublish</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {/* row 1 */}
+                                    {
+                                        usersSurveyData?.map((user, index) => <DashboardsurveyinfoCard key={user._id}
+                                            data={user}
+                                            refetch={refetch}
+                                            index={index}
+                                            likedatapercentagae={likedatapercentagae}
+                                            dislikedatapercentagae={dislikedatapercentagae}
+                                            yesPercantage={yesPercantage}
+                                            noParcantage={noParcantage}
+
+                                        ></DashboardsurveyinfoCard>)
+                                    }
 
 
 
-                    </tbody>
-                </table>
-            </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </>
+            }
+
         </div>
     );
 };

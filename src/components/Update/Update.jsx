@@ -108,7 +108,9 @@ const Update = () => {
                     {/* title */}
                     <div className='text-center'>
                         <label htmlFor="image" className='text-xl font-bold '>title</label>
-                        <input type="text" defaultValue={title} placeholder="type new title" required name='title' className=" flex-1 input input-bordered w-full max-w-xs mx-3 bg-transparent shadow-2xl border-2 border-cyan-300" /> <br />
+                        <input type="text"
+                        //  defaultValue={title} 
+                         placeholder="type new title" required name='title' className=" flex-1 input input-bordered w-full max-w-xs mx-3 bg-transparent shadow-2xl border-2 border-cyan-300" /> <br />
                     </div>
                     {/* category */}
                     <div className='text-center'>
@@ -118,7 +120,7 @@ const Update = () => {
 
                             name="category"
                             required
-                            defaultValue={category}
+                            // defaultValue={category}
 
 
                         >
@@ -137,7 +139,9 @@ const Update = () => {
                     {/* short des */}
                     <div className='text-center'>
                         <label htmlFor="short description" className='text-xl font-bold '>short description</label>
-                        <input type="text" defaultValue={short_description} required placeholder="short description" name='short_description' className="flex-1 input input-bordered w-full max-w-xs mx-3 bg-transparent shadow-2xl border-2 border-cyan-300" /> <br />
+                        <input type="text"
+                        //  defaultValue={short_description} 
+                         required placeholder="short description" name='short_description' className="flex-1 input input-bordered w-full max-w-xs mx-3 bg-transparent shadow-2xl border-2 border-cyan-300" /> <br />
 
                     </div>
 

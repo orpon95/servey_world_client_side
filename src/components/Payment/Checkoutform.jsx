@@ -21,7 +21,7 @@ const Checkoutform = () => {
     const elements = useElements()
 
     useEffect(() => {
-        // fetch("http://localhost:5000/create-payment-intent", {
+        // fetch("https://survey-world-server.vercel.app/create-payment-intent", {
         //     method: "POST",
         //     headers: {
         //         "content-type": "application/json"
@@ -118,11 +118,11 @@ const Checkoutform = () => {
                                 fontSize: '16px',
                                 color: 'white',
                                 '::placeholder': {
-                                    color: 'white',
+                                    color: 'yellow',
                                 },
                             },
                             invalid: {
-                                color: 'white',
+                                color: 'red',
                             },
                         },
                     }}

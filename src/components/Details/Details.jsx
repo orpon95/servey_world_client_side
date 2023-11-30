@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { authContext } from '../../Authprovider/Authprovider';
 import usePro from '../Hooks/usePro';
+import useSurveyor from '../Hooks/useSurveyor';
+import useAdmin from '../Hooks/useAdmin';
 
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 const colors2 = ['green', 'red', '#FFBB28', '#FF8042', 'orange', 'black'];
@@ -34,6 +36,9 @@ const Details = () => {
     const { id } = useParams()
     // const { data } = useLoaderData()
     const [confirm, setConfirm] = useState(false)
+    const [isSurveyor] = useSurveyor()
+    // const [isPro] = usePro()
+    const [isAdmin] = useAdmin()
     // console.log("data", data);
     // const axiosSecure = useAxiosSecure()
     // const { data: surveysData, isLoading, isFetching, refetch } = useQuery({
@@ -304,9 +309,9 @@ const Details = () => {
 
 
             {
-                singleseurveyData ?
+                // singleseurveyData ?
 
-                    <div className="card  bg-base-100 shadow-xl">
+                    <div className="card  shadow-black shadow-xl text-white">
 
                         <div className="card-body text-center">
                             <h2 className="card-title justify-center text-lg font-black">title: <span className='text-lg font-semibold'>{title}</span> </h2>
@@ -365,8 +370,8 @@ const Details = () => {
                                         {/*comments */}
                                         <div className='text-center'>
                                             <label className=" flex flex-col cursor-pointer">
-                                                <span className="label-text text-xl font-bold mx-3" >add comments</span>
-                                                <textarea onChange={handletextArea} className="textarea textarea-primary" placeholder="Bio"></textarea>
+                                                <span className="label-text text-xl font-bold mx-3 text-black" >add comments</span>
+                                                <textarea onChange={handletextArea} className="textarea text-black textarea-primary" placeholder="add comments"></textarea>
                                             </label>
 
                                         </div>
@@ -377,8 +382,8 @@ const Details = () => {
                                         {/*comments */}
                                         <div className='text-center'>
                                             <label className=" flex flex-col cursor-pointer">
-                                                <span className="label-text text-xl font-bold mx-3" >add comments</span>
-                                                <textarea disabled className="textarea textarea-primary" placeholder="Bio"></textarea>
+                                                <span className="label-text text-xl font-bold mx-3 text-black" >add comments</span>
+                                                <textarea disabled className="textarea text-black textarea-primary" placeholder="add comments"></textarea>
                                             </label>
 
                                         </div>
@@ -443,15 +448,43 @@ const Details = () => {
                             <div className='text-center'>
                                 <label className=" flex flex-col cursor-pointer">
                                     <span className="label-text text-xl font-bold mx-3" >add Your feedback</span>
-                                    <textarea onChange={handlefeedback} className="textarea textarea-primary" placeholder="Bio"></textarea>
+                                    <textarea onChange={handlefeedback} className="textarea text-black textarea-primary" placeholder="write your feedback"></textarea>
                                 </label>
 
                             </div>
 
                             {/* button submit */}
-                            <div className='text-center'>
-                                <button type='submit' onClick={buttonClick} className='btn btn-ghost border-2  shadow-2xl  border-cyan-300'  > click to send your vote </button>
-                            </div>
+
+                            {
+                                isAdmin ?
+
+                                    <>
+                                        <div className="card-actions justify-center">
+                                            <Link to={"/novote"} > <button className="btn bg-cyan-300 opacity-70">click for send your vote</button></Link>
+                                        </div>
+
+                                    </>
+                                    :
+                                    isSurveyor
+                                        ?
+                                        <>
+                                            <div className="card-actions justify-center">
+                                                <Link to={"/novote"} > <button className="btn bg-cyan-300 opacity-70">click for send your vote</button></Link>
+                                            </div>
+
+                                        </>
+                                        :
+                                        <>
+                                            <div className='text-center'>
+                                                <button type='submit' onClick={buttonClick} className='btn btn-ghost border-2  shadow-2xl  border-cyan-300'  > click to send your vote </button>
+                                            </div>
+
+                                        </>
+                            }
+
+
+
+
 
 
                             {/* form end */}
@@ -459,7 +492,7 @@ const Details = () => {
 
                         </div>
                     </div>
-                    : <p>loadibg</p>
+                    // : <p>loadibg</p>
             }
             {/* char div */}
 

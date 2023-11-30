@@ -31,6 +31,7 @@ import Payment from './components/Payment/Payment.jsx';
 import NovotePage from './components/NovotePage/NovotePage.jsx';
 import PaymentHistory from './components/PaymentHistory/PaymentHistory.jsx';
 import AllpaymentHistory from './components/AllpaymentHistory/AllpaymentHistory.jsx';
+import Aboutus from './components/Aboutus/Aboutus.jsx';
 const queryClient = new QueryClient()
 // const axiospublic = useAxiospublic()
 const router = createBrowserRouter([
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
 
       {
         path: "details/:id",
-        element: <PrivateRoute><Details></Details></PrivateRoute>,
+        element: <Details></Details>,
         // loader: () => axiospublic.get("/v1/allSurveys")
       },
       {
@@ -74,6 +75,11 @@ const router = createBrowserRouter([
       {
         path: "novote",
         element: <NovotePage></NovotePage>
+
+      },
+      {
+        path: "aboutus",
+        element: <Aboutus></Aboutus>
 
       },
     ]

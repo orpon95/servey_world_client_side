@@ -27,13 +27,28 @@ const AllpaymentHistory = () => {
     })
     return (
         <div>
-            {allpaymenInfo.length}
 
-            <div className='grid grid-cols-1 lg:grid-cols-3  gap-4' >
-                {
-                    allpaymenInfo?.map(data => <AllpaymentHisCard key={data._id} data={data} ></AllpaymentHisCard>)
-                }
-            </div>
+            {
+                isLoading ? <>
+                    <h1 className='text-3xl font-black text-center mt-7'>data is loading, pls wait</h1>
+
+                    <span className="loading loading-spinner loading-lg text-3xl font-black mx-auto"></span></>
+
+                    :
+
+                    <>
+                        {allpaymenInfo.length}
+
+                        <div className='grid grid-cols-1 lg:grid-cols-3  gap-4' >
+                            {
+                                allpaymenInfo?.map(data => <AllpaymentHisCard key={data._id} data={data} ></AllpaymentHisCard>)
+                            }
+                        </div>
+
+                    </>
+
+            }
+
         </div>
     );
 };

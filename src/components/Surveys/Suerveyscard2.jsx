@@ -4,13 +4,20 @@ import useSurveyor from '../Hooks/useSurveyor';
 import usePro from '../Hooks/usePro';
 import useAdmin from '../Hooks/useAdmin';
 
-const Suerveyscard2 = ({ data }) => {
+const Suerveyscard2 = ({ data, isLoading }) => {
     const { title, category, short_description, _id, timestamp, status } = data
     const [isSurveyor] = useSurveyor()
     const [isPro] = usePro()
     const [isAdmin] = useAdmin()
     return (
         <div>
+
+
+
+
+
+
+
 
             {
                 status ?
@@ -31,31 +38,13 @@ const Suerveyscard2 = ({ data }) => {
 
                                 {/* vote button */}
 
-                                {
-                                    isAdmin ?
 
-                                        <>
-                                            <div className="card-actions justify-center">
-                                                <Link to={"/novote"} > <button className="btn bg-cyan-300 opacity-70">click  vote</button></Link>
-                                            </div>
+                                <div className="card-actions justify-center">
+                                    <Link to={`/details/${_id}`} > <button className="btn btn-primary">click to vote</button></Link>
+                                </div>
 
-                                        </> :
-                                        isSurveyor ?
-                                            <>
-                                                <div className="card-actions justify-center">
-                                                    <Link to={"/novote"} > <button className="btn bg-cyan-300 opacity-70">click  vote</button></Link>
-                                                </div>
-                                            </>
 
-                                            :
 
-                                            <>
-                                                <div className="card-actions justify-center">
-                                                    <Link to={`/details/${_id}`} > <button className="btn btn-primary">click to vote</button></Link>
-                                                </div>
-
-                                            </>
-                                }
 
                                 {/* update button */}
 
@@ -76,8 +65,14 @@ const Suerveyscard2 = ({ data }) => {
                             </div>
                         </div>
 
+
+
+
+
                     </>
             }
+
+
 
 
         </div>

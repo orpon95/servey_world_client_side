@@ -34,47 +34,68 @@ const Surveys = () => {
     return (
         <div>
 
-            <form onSubmit={handlecat} className='text-center my-7'>
+            {
+                isLoading ?
 
+                    <>
+                        <span className="loading loading-spinner loading-lg mx-auto"></span>
 
-                {/* category */}
-                <div className='text-center'>
-                    <label htmlFor="category" className='text-xl font-bold mx-3'>search by category</label>
-                    <select
-                        className='border-2 bg-transparent shadow-2xl  border-cyan-300  p-3 flex-1'
-
-                        name="category"
-                        required
-
-
-                    >
-                        <option value="Demographics">Demographics</option>
-                        <option value="lifeStyle">lifeStyle</option>
-                        <option value="Technology-Usage">Technology-Usage</option>
-                        <option value="work-education">work-education</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="Social-media-usage">Social-media-usage</option>
-
-                    </select><br />
-                </div>
-                <input type="submit" value="search" className='btn bg-cyan-300 my-6' />
+                    </>
 
 
 
-            </form>
+                    :
+
+                    <>
+                        <form onSubmit={handlecat} className='text-center my-7'>
 
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                            {/* category */}
+                            <div className='text-center'>
+                                <label htmlFor="category" className='text-xl font-bold mx-3'>search by category</label>
+                                <select
+                                    className='border-2 bg-transparent shadow-2xl  border-cyan-300  p-3 flex-1'
+
+                                    name="category"
+                                    required
 
 
-                {
-                    surveysData?.map(data => <Suerveyscard2 key={data._id} data={data} ></Suerveyscard2>)
-                }
-                {/* {
-                    surveysData?.map(data => <SurveysCard key={data._id} data={data} >  </SurveysCard>)
-                } */}
+                                >
+                                    <option value="Demographics">Demographics</option>
+                                    <option value="lifeStyle">lifeStyle</option>
+                                    <option value="Technology-Usage">Technology-Usage</option>
+                                    <option value="work-education">work-education</option>
+                                    <option value="Entertainment">Entertainment</option>
+                                    <option value="Social-media-usage">Social-media-usage</option>
 
-            </div>
+                                </select><br />
+                            </div>
+                            <input type="submit" value="search" className='btn bg-cyan-300 my-6' />
+
+
+
+                        </form>
+
+
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+
+
+                            {
+                                surveysData?.map(data => <Suerveyscard2 key={data._id} data={data} isLoading={isLoading} ></Suerveyscard2>)
+                            }
+                            {/* {
+    surveysData?.map(data => <SurveysCard key={data._id} data={data} >  </SurveysCard>)
+} */}
+
+                        </div>
+
+
+                    </>
+
+
+            }
+
+
 
 
         </div>
