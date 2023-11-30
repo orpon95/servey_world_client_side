@@ -32,6 +32,7 @@ import NovotePage from './components/NovotePage/NovotePage.jsx';
 import PaymentHistory from './components/PaymentHistory/PaymentHistory.jsx';
 import AllpaymentHistory from './components/AllpaymentHistory/AllpaymentHistory.jsx';
 import Aboutus from './components/Aboutus/Aboutus.jsx';
+import Contactus from './components/Contactus/Contactus.jsx';
 const queryClient = new QueryClient()
 // const axiospublic = useAxiospublic()
 const router = createBrowserRouter([
@@ -80,6 +81,11 @@ const router = createBrowserRouter([
       {
         path: "aboutus",
         element: <Aboutus></Aboutus>
+
+      },
+      {
+        path: "contactus",
+        element: <Contactus></Contactus>
 
       },
     ]

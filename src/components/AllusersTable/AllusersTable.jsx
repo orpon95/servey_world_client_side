@@ -67,7 +67,7 @@ const AllusersTable = ({ data, index, refetch }) => {
 
                     Swal.fire({
                         title: 'success!',
-                        text: 'product updated successfully',
+                        text: 'made admin successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     });
@@ -97,7 +97,7 @@ const AllusersTable = ({ data, index, refetch }) => {
 
                     Swal.fire({
                         title: 'success!',
-                        text: 'product updated successfully',
+                        text: 'made surveyor successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     });

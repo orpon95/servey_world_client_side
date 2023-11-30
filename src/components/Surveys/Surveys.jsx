@@ -38,6 +38,7 @@ const Surveys = () => {
                 isLoading ?
 
                     <>
+                        <h1 className='text-3xl font-black text-center mt-7'>data is loading, pls wait</h1>
                         <span className="loading loading-spinner loading-lg mx-auto"></span>
 
                     </>

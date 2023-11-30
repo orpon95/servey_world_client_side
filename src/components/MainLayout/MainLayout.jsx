@@ -6,11 +6,13 @@ import "./MainLayout.css"
 
 const MainLayout = () => {
     return (
-        <div className='w-[80%] mx-auto py-6 dark-theme'>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
-            
+        <div className='dark-theme'>
+            <div className='w-[80%] mx-auto py-6 '>
+                <Navbar></Navbar>
+                <Outlet></Outlet>
+                <Footer></Footer>
+
+            </div>
         </div>
     );
 };

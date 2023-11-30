@@ -92,6 +92,8 @@ const Navbar = () => {
                                 <NavLink to={"/surveys"} ><button className='btn bg-cyan-300' >All surveys</button></NavLink>
 
                                 <NavLink to={"/payment"} > <button className='btn bg-cyan-300' >Pro users</button></NavLink>
+                                <NavLink to={"/aboutus"} > <button className='btn bg-cyan-300' >About us</button></NavLink>
+                                <NavLink to={"/contactus"} > <button className='btn bg-cyan-300' >contact us</button></NavLink>
 
                                 {/* <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li> */}
 
@@ -131,7 +133,9 @@ const Navbar = () => {
                     
                      <NavLink to={"/"} ><button className='btn btn-ghost underline'> Home</button></NavLink>
                      <NavLink to={"/surveys"} ><button className='btn btn-ghost underline'> all surveys</button></NavLink> 
-                     <NavLink to={"/payment"} > <button className='btn btn-ghost underline'> pro users</button></NavLink> 
+                     <NavLink to={"/payment"} > <button className='btn btn-ghost underline'> pro users</button></NavLink>
+                     <NavLink to={"/aboutus"} > <button className='btn bg-cyan-300' >About us</button></NavLink> 
+                     <NavLink to={"/contactus"} > <button className='btn bg-cyan-300' >contact us</button></NavLink> 
                     {/* <li> <NavLink to={"/create_survey"} >create survey</NavLink> </li> */}
                     <li> <NavLink to={"/dashboard"} ><button className='btn btn-ghost underline'> dashboard</button></NavLink> </li>
                     {

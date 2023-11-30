@@ -94,7 +94,7 @@ const DashboardsurveyinfoCard = ({ data, refetch, index, likedatapercentagae, di
 
                     Swal.fire({
                         title: 'success!',
-                        text: 'product updated successfully',
+                        text: 'unpublished successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     });
