@@ -12,7 +12,7 @@ const Footer = () => {
                     <header className=" text-black footer-title">contact information</header>
                     <a className="text-black link link-hover">sayedabad,80\c,dhaka</a>
                     <a className=" text-black link link-hover">call:02154545</a>
-                    <a className=" link link-hover text-red-700">email:job-city@gmail.com</a>
+                    <a className=" link link-hover text-red-700">email:survey-world@gmail.com</a>
                     {/* <a className="link link-hover">Advertisement</a> */}
                 </nav>
                 <nav>
